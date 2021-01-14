@@ -42,8 +42,8 @@ def grafico_comparativo(data_2019, data_2020, causa, estado="BRASIL"):
 
 
 def main():
-    obitos_2019 = carrega_dados("data\obitos-2019.csv")
-    obitos_2020 = carrega_dados("data\obitos-2020.csv")
+    obitos_2019 = carrega_dados("data/obitos-2019.csv")
+    obitos_2020 = carrega_dados("data/obitos-2020.csv")
     tipo_doenca = obitos_2020["tipo_doenca"].unique()
     estado = np.append(obitos_2020["uf"].unique(), "BRASIL")
 
