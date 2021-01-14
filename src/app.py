@@ -4,9 +4,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+from time import sleep
+
 
 def carrega_dados(caminho):
     data = pd.read_csv(caminho)
+    sleep(3)
     return data
 
 
