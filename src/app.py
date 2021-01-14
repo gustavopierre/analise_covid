@@ -10,7 +10,6 @@ from time import sleep
 @st.cache
 def carrega_dados(caminho):
     data = pd.read_csv(caminho)
-    sleep(3)
     return data
 
 
