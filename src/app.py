@@ -28,12 +28,32 @@ def grafico_comparativo(data_2019, data_2020, causa, estado="BRASIL"):
     if estado == "BRASIL":
         total_2019 = data_2019.groupby("tipo_doenca").sum()
         total_2020 = data_2020.groupby("tipo_doenca").sum()
-        lista = [int(total_2019.loc[causa]), int(total_2020.loc[causa])]
+        
+        quant_2019 = len(total_2019.query(f"tipo_doenca == '{causa}'"))
+        quant_2020 = len(total_2020.query(f"tipo_doenca == '{causa}'"))
+        
+        if quant_2019 != 0:
+            quant_2019 = int(total_2019.loc[causa])
+        if quant_2020 != 0:
+            quant_2020 = int(total_2020.loc[causa])
+       
+
+        #lista = [int(total_2019.loc[causa]), int(total_2020.loc[causa])]
     else:
         total_2019 = data_2019.groupby(["uf","tipo_doenca"]).sum()
         total_2020 = data_2020.groupby(["uf", "tipo_doenca"]).sum()
-        lista = [int(total_2019.loc[estado, causa]), int(total_2020.loc[estado, causa])]
+
+        quant_2019 = len(total_2019.query(f"tipo_doenca == '{causa}' and uf =='{estado}'"))
+        quant_2020 = len(total_2020.query(f"tipo_doenca == '{causa}' and uf =='{estado}'"))
+        
+        if quant_2019 != 0:
+            quant_2019 = int(total_2019.loc[estado, causa])
+        if quant_2020 != 0:
+            quant_2020 = int(total_2020.loc[estado, causa])
+
+        #lista = [int(total_2019.loc[estado, causa]), int(total_2020.loc[estado, causa])]
     
+    lista = [quant_2019, quant_2020]
     data = pd.DataFrame({"Total" : lista,
                             "Ano": [2019, 2020]})
 
